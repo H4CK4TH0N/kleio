@@ -1,0 +1,249 @@
+{
+  "id": "5b7e66ad-e7ba-4cbf-849e-f78e1c524b2e",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.meetings": {
+      "name": "meetings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_email": {
+          "name": "user_email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "participants": {
+          "name": "participants",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "processed": {
+          "name": "processed",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "short_description": {
+          "name": "short_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "takeaways": {
+          "name": "takeaways",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "action_items": {
+          "name": "action_items",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mood_graph": {
+          "name": "mood_graph",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timeline": {
+          "name": "timeline",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "participant_engagement": {
+          "name": "participant_engagement",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "decision_tree": {
+          "name": "decision_tree",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "topic_clusters": {
+          "name": "topic_clusters",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sentiment_over_time": {
+          "name": "sentiment_over_time",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "question_tracker": {
+          "name": "question_tracker",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "resource_links": {
+          "name": "resource_links",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "meeting_efficiency_score": {
+          "name": "meeting_efficiency_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "meetings_user_email_users_email_fk": {
+          "name": "meetings_user_email_users_email_fk",
+          "tableFrom": "meetings",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_email"
+          ],
+          "columnsTo": [
+            "email"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "meetings_id_unique": {
+          "name": "meetings_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        }
+      }
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "number_of_meetings": {
+          "name": "number_of_meetings",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "total_meeting_duration": {
+          "name": "total_meeting_duration",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "average_meeting_duration": {
+          "name": "average_meeting_duration",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "total_meeting_efficiency_score": {
+          "name": "total_meeting_efficiency_score",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "participants": {
+          "name": "participants",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "communication_email": {
+          "name": "communication_email",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "security_email": {
+          "name": "security_email",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "meeting_email": {
+          "name": "meeting_email",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
